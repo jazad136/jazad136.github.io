@@ -4,20 +4,13 @@
   </head>
   <body>
     <h1>Multiple Choice</h1>
-    
+      
     <form><fieldset>
       
       <h3>Comprehension Question for Bug 1</h3>
       <h4>Please, browse the code below.</h4>
-      <p>
-	
-      </p>
-      
-      <p><img style="width:1000px" src="images/bug1_choice4_surrounding.png"/></p>
-      <h3 style="margin-left: 60px">. . . </h3>
-      <h3 style="margin-left: 60px">. . . </h3> 
-      <h3 style="margin-left: 60px">. . . </h3>
-      <p><img style="width:1000px" src="images/bug1_choice123_surrounding.png"/></p>
+    <iframe src="2_JabRefprocessArguments.htm" width="900" height="300"></iframe>
+    <!--<iframe src="images/bug1_choice1.png"></iframe>-->
       <h4>The problem is that the database is not saving the bibtex file to the file system. </h4>
       <h4>Please choose the code segment that when modified will fix the bug.</h4>
       <p><input type="radio" id="Choice1" value="1" checked="checked"/>
@@ -35,8 +28,36 @@
       <p><input type="radio" id="Choice4" value="4" />
       <label for="Choice4">Choice 4</label><br/>
       <img src="images/bug1_choice4.png"/></p>
-    
-      
+     
     </fieldset></form>
+    
+      <br/>
+      <hr/>
+      <h2>NEXT PAGE STARTS HERE AFTER ANSWER SELECTED</h2>
+      <hr/>
+      <form><fieldset>
+      <h1>Multiple Choice</h1>
+      <h3>Bug Fixing Question for Bug 1</h3>
+      <h4>Please browse the code below</h4>
+      <iframe src="2_JabRefprocessArguments.htm" width="900" height="300"></iframe>
+      <h4> Which of these four options is the most likely fix to the bug:</h4>
+      <h5>The problem is that the database is not saving the bibtex file to the file system.</h5>
+      <p><input type="radio" id="Choice1" value="1" checked="checked"/>
+      <label for="Choice1">Choice 1</label><br/>
+      session.commit(new File(subName));</p>
+      
+      <p><input type="radio" id="Choice2" value="2"/>
+      <label for="Choice2">Choice 2</label><br/>
+      session.commit(newBase);</p>
+
+      <p><input type="radio" id="Choice3" value="3" />
+      <label for="Choice3">Choice 3</label><br/>
+      session.commit(session);</p>
+
+      <p><input type="radio" id="Choice4" value="4" />
+      <label for="Choice4">Choice 4</label><br/>
+      session.getWriter().couldEncodeAll();</p>
+    </fieldset></form>
+      
   </body>
 </html>
