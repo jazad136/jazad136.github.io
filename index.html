@@ -1,6 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>Experiment Bug 1</title>
+    <style>
+      body {font-family: "Arial","Helvetica",sans-serif;}
+    </style>
   </head>
   <body>
     <h1>Multiple Choice</h1>
@@ -11,21 +14,32 @@
       <h4>Please, browse the code below.</h4>
     <iframe src="2_JabRefprocessArguments.htm" width="900" height="300"></iframe>
     <!--<iframe src="images/bug1_choice1.png"></iframe>-->
-      <h4>The problem is that the database is not saving the bibtex file to the file system. </h4>
-      <h4>Please choose the code segment that when modified will fix the bug.</h4>
-      <p><input type="radio" id="Choice1" value="1" checked="checked"/>
+    <h4>The problem is that JabRef is not treating the &quot;--aux&quot; argument properly.</h4>
+    <div style="padding-left:30px">
+      <div style="display: block; width: 500px; border: thin solid gray; padding-left: 30px; background-color:#ffff77">
+	<h4>From JabRef documentation</h4>
+	<p>--aux infile[.aux],outfile[.bib] base-BibTeX-file</p>
+	<p>Extract a subdatabase from a .aux file</p>
+      </div>
+      <h4>In other words, the --aux argument is used as input, and a file ending in extension &quot;bib&quot; is created.</h4>
+    </div>
+
+    <h4>A bug exists such that when the --aux argument is specified,
+    the data that is imported is not written to the file system.</h4>
+    <h4>Please choose the code segment that when modified will fix the bug.</h4>
+      <p><input type="radio" name="Q2" id="Choice1" value="1" checked="checked"/>
       <label for="Choice1">Choice 1</label><br/>
       <img src="images/bug1_choice1.png"/></p>
       
-      <p><input type="radio" id="Choice2" value="2"/>
+      <p><input type="radio" name="Q2" id="Choice2" value="2"/>
       <label for="Choice2">Choice 2</label><br/>
       <img src="images/bug1_choice2.png"/></p>
 
-      <p><input type="radio" id="Choice3" value="3" />
+      <p><input type="radio" name="Q2" id="Choice3" value="3" />
       <label for="Choice3">Choice 3</label><br/>
       <img src="images/bug1_choice3.png"/></p>
 
-      <p><input type="radio" id="Choice4" value="4" />
+      <p><input type="radio" name="Q2" id="Choice4" value="4" />
       <label for="Choice4">Choice 4</label><br/>
       <img src="images/bug1_choice4.png"/></p>
      
@@ -40,21 +54,24 @@
       <h3>Bug Fixing Question for Bug 1</h3>
       <h4>Please browse the code below</h4>
       <iframe src="2_JabRefprocessArguments.htm" width="900" height="300"></iframe>
-      <h4> Which of these four options is the most likely fix to the bug:</h4>
-      <h5>The problem is that the database is not saving the bibtex file to the file system.</h5>
-      <p><input type="radio" id="Choice1" value="1" checked="checked"/>
+      <h4>A bug exists such that when the --aux argument is specified,
+      the data that is imported is not written to the file system.</h4>
+      <p>The following code snippet has been identified to cause the bug</p>
+      <p><img src="images/bug1_choice1.png"/></p>
+      <h4> Which of these four options is the most likely fix to this bug:</h4>
+      <p><input type="radio" name="Q1" id="Choice1" value="1" checked="checked"/>
       <label for="Choice1">Choice 1</label><br/>
       session.commit(new File(subName));</p>
       
-      <p><input type="radio" id="Choice2" value="2"/>
+      <p><input type="radio" name="Q1" id="Choice2" value="2"/>
       <label for="Choice2">Choice 2</label><br/>
       session.commit(newBase);</p>
 
-      <p><input type="radio" id="Choice3" value="3" />
+      <p><input type="radio" name="Q1" id="Choice3" value="3" />
       <label for="Choice3">Choice 3</label><br/>
       session.commit(session);</p>
 
-      <p><input type="radio" id="Choice4" value="4" />
+      <p><input type="radio" name="Q1" id="Choice4" value="4" />
       <label for="Choice4">Choice 4</label><br/>
       session.getWriter().couldEncodeAll();</p>
     </fieldset></form>
