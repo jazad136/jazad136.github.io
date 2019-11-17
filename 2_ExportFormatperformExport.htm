@@ -1,0 +1,1467 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>C:\Users\jsaddle\source\git\GitHub_jsjs_eyetracking\artifacts\bug2\2_ExportFormat#performExport_oldcode.java</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	text-autospace:none;
+	font-size:11.0pt;
+	font-family:"Courier New";}
+h1
+	{margin-top:.1pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:67.85pt;
+	margin-bottom:.0001pt;
+	text-indent:-54.05pt;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	text-autospace:none;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:.15pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:67.85pt;
+	margin-bottom:.0001pt;
+	text-indent:-54.05pt;
+	text-autospace:none;
+	font-size:11.0pt;
+	font-family:"Courier New";}
+p.TableParagraph, li.TableParagraph, div.TableParagraph
+	{mso-style-name:"Table Paragraph";
+	margin-top:.05pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:10.4pt;
+	text-autospace:none;
+	font-size:11.0pt;
+	font-family:"Courier New";}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{text-autospace:none;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:14.0pt 40.0pt 14.0pt .25in;}
+div.WordSection1
+	{page:WordSection1;}
+@page WordSection2
+	{size:8.5in 11.0in;
+	margin:14.0pt 40.0pt 14.0pt .25in;}
+div.WordSection2
+	{page:WordSection2;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=WordSection1>
+
+<p class=MsoListParagraph style='margin-top:4.0pt;margin-right:0in;margin-bottom:
+0in;margin-left:43.85pt;margin-bottom:.0001pt;text-indent:-24.05pt'><span
+style='font-size:10.0pt'>1<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>@Override</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:43.85pt;margin-bottom:.0001pt;text-indent:-24.05pt'><span
+style='font-size:10.0pt'>2<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>public void performExport(final BibtexDatabase<span
+style='letter-spacing:-.7pt'> </span>database,</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-72.05pt'><span
+style='font-size:10.0pt'>3<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>final MetaData metaData, final String<span
+style='letter-spacing:-.65pt'> </span>file,</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-72.05pt'><span
+style='font-size:10.0pt'>4<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>final String enc, Set&lt;String&gt;
+entryIds) throws Exception<span style='letter-spacing:-1.05pt'> </span>{</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-72.05pt'><span
+style='font-size:10.0pt'>5<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-48.05pt'><span style='font-size:
+10.0pt'>6<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>File outFile = new<span
+style='letter-spacing:-.4pt'> </span>File(file);</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;text-indent:-48.05pt'><span
+style='font-size:10.0pt'>7<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>SaveSession ss =<span
+style='letter-spacing:-.3pt'> </span>null;</span></p>
+
+<p class=MsoListParagraph style='text-indent:-48.05pt'><span style='font-size:
+10.0pt'>8<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>if (this.encoding != null)<span
+style='letter-spacing:-.3pt'> </span>{</span></p>
+
+<h1 style='margin-top:.15pt;margin-right:0in;margin-bottom:0in;margin-left:
+91.85pt;margin-bottom:.0001pt;text-indent:-72.05pt'><span style='font-weight:
+normal'>9<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-weight:normal'>try<span style='letter-spacing:
+-.1pt'> </span>{</span></h1>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:115.85pt;margin-bottom:.0001pt;text-indent:-102.05pt'><span
+style='font-size:10.0pt'>10<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>ss = getSaveSession(this.encoding,<span
+style='letter-spacing:-.35pt'> </span>outFile);</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt'>11<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>} catch (IOException ex)<span
+style='letter-spacing:-.4pt'> </span>{</span></p>
+
+<p class=MsoListParagraph style='margin-left:115.85pt;text-indent:-102.05pt'><span
+style='font-size:10.0pt'>12<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// Perhaps the overriding encoding
+doesn't<span style='letter-spacing:-.25pt'> </span>work?</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:115.85pt;margin-bottom:.0001pt;text-indent:-102.05pt'><span
+style='font-size:10.0pt'>13<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// We will fall back on the
+default<span style='letter-spacing:-.25pt'> </span>encoding.</span></p>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:168.0pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%'>14<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>LOGGER.warn(&quot;Can
+not get save session.&quot;, ex); </span></p>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:168.0pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%'>15<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>}</span></p>
+
+<p class=MsoNormal style='margin-top:.05pt;margin-right:0in;margin-bottom:0in;
+margin-left:13.85pt;margin-bottom:.0001pt'><span style='font-size:10.0pt'>16       }</span></p>
+
+<h1><span style='letter-spacing:-.05pt;font-weight:normal'>17<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-weight:normal'>if (ss == null)<span
+style='letter-spacing:-.25pt'> </span>{</span></h1>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:258.0pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%;letter-spacing:
+-.05pt'>18<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>ss = getSaveSession(enc,
+outFile); </span></p>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:258.0pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%;letter-spacing:
+-.05pt'>19<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>}</span></p>
+
+<p class=MsoBodyText style='margin-top:.05pt;margin-right:0in;margin-bottom:
+0in;margin-left:13.85pt;margin-bottom:.0001pt'>20</p>
+
+<p class=MsoBodyText style='margin-top:.1pt;margin-right:3.75in;margin-bottom:
+0in;margin-left:13.85pt;margin-bottom:.0001pt;line-height:100%'>21 VerifyingWriter
+ps = ss.getWriter(); 22</p>
+
+<p class=MsoListParagraph style='margin-top:.05pt'><span style='font-size:10.0pt;
+letter-spacing:-.05pt'>23<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>Layout beginLayout =<span
+style='letter-spacing:-.35pt'> </span>null;</span></p>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:402.0pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%;letter-spacing:
+-.05pt'>24<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>Reader reader; 25</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in'><span style='font-size:10.0pt;
+letter-spacing:-.05pt'>26<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// Check if this export filter has
+bundled name<span style='letter-spacing:-.45pt'> </span>formatters:</span></p>
+
+<p class=MsoListParagraph><span style='font-size:10.0pt;letter-spacing:-.05pt'>27<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// Set a global field, so all
+layouts have access to the custom name<span style='letter-spacing:-1.7pt'> </span>formatters:</span></p>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:48.0pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%;letter-spacing:
+-.05pt'>28<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>Globals.prefs.customExportNameFormatters
+=<span style='letter-spacing:-2.75pt'> </span>readFormatterFile(lfFileName); 29</span></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:2.0in;margin-bottom:0in;
+margin-left:13.85pt;margin-bottom:.0001pt;line-height:100%'><span
+style='font-size:10.0pt;line-height:100%'>30       ArrayList&lt;String&gt; missingFormatters
+= new<span style='letter-spacing:-2.3pt'> </span>ArrayList&lt;&gt;(1); 31</span></p>
+
+<p class=MsoListParagraph style='margin-top:.05pt'><span style='font-size:10.0pt;
+letter-spacing:-.05pt'>32<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// Print<span style='letter-spacing:
+-.05pt'> </span>header</span></p>
+
+<h1 style='margin-top:.15pt'><span style='letter-spacing:-.05pt;font-weight:
+normal'>33<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-weight:normal'>try<span style='letter-spacing:
+-.1pt'> </span>{</span></h1>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:91.85pt;margin-bottom:.0001pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>34<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>reader = getReader(lfFileName +<span
+style='letter-spacing:-.6pt'> </span>&quot;.begin.layout&quot;);</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>35<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>LayoutHelper layoutHelper = new<span
+style='letter-spacing:-.75pt'> </span>LayoutHelper(reader);</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>36<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>beginLayout =<span
+style='letter-spacing:-.25pt'> </span>layoutHelper</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:139.85pt;margin-bottom:.0001pt;text-indent:-126.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>37<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>.getLayoutFromText(Globals.FORMATTER_PACKAGE);</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>38<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>reader.close();</span></p>
+
+<p class=MsoListParagraph><span style='font-size:10.0pt;letter-spacing:-.05pt'>39<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>} catch (IOException ex)<span
+style='letter-spacing:-.4pt'> </span>{</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:91.85pt;margin-bottom:.0001pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>40<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// If an exception was cast,
+export filter doesn't have a<span style='letter-spacing:-.65pt'> </span>begin</span></p>
+
+<p class=MsoListParagraph style='margin-left:91.85pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>41<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>//<span style='letter-spacing:
+-.05pt'> </span>file.</span></p>
+
+<p class=MsoNormal style='margin-top:.15pt;margin-right:0in;margin-bottom:0in;
+margin-left:13.85pt;margin-bottom:.0001pt'><span style='font-size:10.0pt'>42       }</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt'><span style='font-size:10.0pt;
+letter-spacing:-.05pt'>43<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// Write the<span
+style='letter-spacing:-.05pt'> </span>header</span></p>
+
+<p class=MsoListParagraph><span style='font-size:10.0pt;letter-spacing:-.05pt'>44<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>if (beginLayout != null)<span
+style='letter-spacing:-.35pt'> </span>{</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:91.85pt;margin-bottom:.0001pt;text-indent:-78.05pt'><span
+style='font-size:10.0pt;letter-spacing:-.05pt'>45<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>ps.write(beginLayout.doLayout(database,<span
+style='letter-spacing:-.15pt'> </span>enc));</span></p>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:95.95pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%;letter-spacing:
+-.05pt'>46<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%;letter-spacing:
+-.05pt'>missingFormatters.addAll(beginLayout.getMissingFormatters()); </span></p>
+
+<p class=MsoListParagraph style='margin-top:.15pt;margin-right:95.95pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%;letter-spacing:
+-.05pt'>47<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>}</span></p>
+
+<p class=MsoBodyText style='margin-top:.05pt;margin-right:0in;margin-bottom:
+0in;margin-left:13.85pt;margin-bottom:.0001pt'>48</p>
+
+<p class=MsoBodyText style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:13.85pt;margin-bottom:.0001pt'>49       /*</p>
+
+<p class=MsoListParagraph style='margin-left:73.85pt;text-indent:-60.05pt'><span
+style='font-size:10.0pt;color:#7F7F7F;letter-spacing:-.05pt'>50<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>* Write database entries; entries
+will be sorted as they appear on<span style='letter-spacing:-.9pt'> </span>the</span></p>
+
+<p class=MsoListParagraph style='margin-left:73.85pt;text-indent:-60.05pt'><span
+style='font-size:10.0pt;color:#7F7F7F;letter-spacing:-.05pt'>51<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>* screen, or sorted by author,
+depending on Preferences. We also<span style='letter-spacing:-.95pt'> </span>supply</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:73.85pt;margin-bottom:.0001pt;text-indent:-60.05pt'><span
+style='font-size:10.0pt;color:#7F7F7F;letter-spacing:-.05pt'>52<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>* the Set entries - if we are to
+export only certain entries, it<span style='letter-spacing:-.8pt'> </span>will</span></p>
+
+<p class=MsoListParagraph style='margin-left:73.85pt;text-indent:-60.05pt'><span
+style='font-size:10.0pt;color:#7F7F7F;letter-spacing:-.05pt'>53<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>* be non-null, and be used to
+choose entries. Otherwise, it will<span style='letter-spacing:-.75pt'> </span>be</span></p>
+
+<p class=MsoListParagraph style='margin-left:73.85pt;text-indent:-60.05pt'><span
+style='font-size:10.0pt;color:#7F7F7F;letter-spacing:-.05pt'>54<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>* null, and be<span
+style='letter-spacing:-.05pt'> </span>ignored.</span></p>
+
+<p class=MsoBodyText style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:13.85pt;margin-bottom:.0001pt'>55        */</p>
+
+<p class=MsoListParagraph><span style='font-size:10.0pt;color:#7F7F7F;
+letter-spacing:-.05pt'>56<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>List&lt;BibtexEntry&gt; sorted = FileActions.getSortedEntries(database,<span
+style='letter-spacing:-1.35pt'> </span>metaData,</span></p>
+
+<p class=MsoListParagraph style='margin-left:115.85pt;text-indent:-102.05pt'><span
+style='font-size:10.0pt;color:#7F7F7F;letter-spacing:-.05pt'>57<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>entryIds,<span style='letter-spacing:
+-.1pt'> </span>false);</span></p>
+
+<p class=MsoBodyText style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:13.85pt;margin-bottom:.0001pt'>58</p>
+
+<p class=MsoListParagraph><span style='font-size:10.0pt;color:#7F7F7F;
+letter-spacing:-.05pt'>59<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>// Load default<span
+style='letter-spacing:-.05pt'> </span>layout</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt;margin-right:228.0pt;
+margin-bottom:0in;margin-left:13.85pt;margin-bottom:.0001pt;text-indent:0in;
+line-height:100%'><span style='font-size:10.0pt;line-height:100%;color:#7F7F7F;
+letter-spacing:-.05pt'>60<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;line-height:100%'>reader = getReader(lfFileName
++ &quot;.layout&quot;); 61</span></p>
+
+<p class=MsoListParagraph style='margin-top:.05pt'><span style='font-size:10.0pt;
+color:#7F7F7F;letter-spacing:-.05pt'>62<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>LayoutHelper layoutHelper = new<span
+style='letter-spacing:-.7pt'> </span>LayoutHelper(reader);</span></p>
+
+<p class=MsoListParagraph><span style='font-size:10.0pt;color:#7F7F7F;
+letter-spacing:-.05pt'>63<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>Layout defLayout =<span
+style='letter-spacing:-.4pt'> </span>layoutHelper</span></p>
+
+<p class=MsoListParagraph style='margin-left:115.85pt;text-indent:-102.05pt'><span
+style='font-size:10.0pt;color:#7F7F7F;letter-spacing:-.05pt'>64<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>.getLayoutFromText(Globals.FORMATTER_PACKAGE);</span></p>
+
+<p class=MsoListParagraph style='margin-top:.1pt'><span style='font-size:10.0pt;
+color:#7F7F7F;letter-spacing:-.05pt'>65<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>reader.close();</span></p>
+
+<p class=MsoListParagraph><span style='font-size:10.0pt;color:#7F7F7F;
+letter-spacing:-.05pt'>66<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt'>if (defLayout != null)<span
+style='letter-spacing:-.35pt'> </span>{</span></p>
+
+<p class=MsoNormal style='margin-left:13.8pt'><span style='font-size:10.0pt'>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:14.15pt;border-collapse:collapse'>
+ <tr style='height:11.4pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>67</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>missingFormatters<b>.</b>addAll<b>(</b>defLayout<b>.</b>getMissingFormatters<b>());</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>68</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>LOGGER<b>.</b>warn<b>(</b>defLayout<b>.</b>getMissingFormatters<b>());</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>69</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>}</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>70</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>HashMap<b>&lt;</b>String<b>,
+  </b>Layout<b>&gt; </b>layouts <b>= new </b>HashMap<b>&lt;&gt;();</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>71</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Layout layout<b>;</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>72</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>73</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>ExportFormats<b>.</b>entryNumber
+  <b>= </b>0<b>;</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>74</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>for (</span></b><span
+  style='font-size:10.0pt'>BibtexEntry entry <b>: </b>sorted<b>) {</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>75</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>ExportFormats<b>.</b>entryNumber<b>++;
+  </b>// Increment entry counter.</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>76</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// Get the layout</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>77</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>String type <b>= </b>entry<b>.</b>getType<b>().</b>getName<b>().</b>toLowerCase<b>();</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>78</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>if (</span></b><span
+  style='font-size:10.0pt'>layouts<b>.</b>containsKey<b>(</b>type<b>)) {</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>79</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>layout <b>= </b>layouts<b>.</b>get<b>(</b>type<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>80</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>} else {</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>81</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>try {</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>82</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// We try to get a
+  type-specific layout for this entry.</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>83</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>reader <b>= </b>getReader<b>(</b>lfFileName
+  <b>+ </b>'.' <b>+ </b>type <b>+ </b>&quot;.layout&quot;<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>84</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>layoutHelper <b>= new </b>LayoutHelper<b>(</b>reader<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>85</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>layout <b>= </b>layoutHelper</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>86</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>.</span></b><span
+  style='font-size:10.0pt'>getLayoutFromText<b>(</b>Globals<b>.</b>FORMATTER_PACKAGE<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>87</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>layouts<b>.</b>put<b>(</b>type<b>,
+  </b>layout<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>88</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>reader<b>.</b>close<b>();</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>89</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>if (</span></b><span
+  style='font-size:10.0pt'>layout <b>!= null) {</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>90</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>missingFormatters<b>.</b>addAll<b>(</b>layout<b>.</b>getMissingFormatters<b>());</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>91</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>}</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>92</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>93</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>} catch (</span></b><span
+  style='font-size:10.0pt'>IOException ex<b>) {</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>94</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// The exception indicates
+  that no type-specific layout</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>95</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// exists, so we</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>96</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// go with the default one.</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>97</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>layout <b>= </b>defLayout<b>;</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>98</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>}</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>99</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>}</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>100</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>101</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// Write the entry</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>102</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>ps<b>.</b>write<b>(</b>layout<b>.</b>doLayout<b>(</b>entry<b>,
+  </b>database<b>));</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>103</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>}</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>104</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>105</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// Print footer</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>106</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>107</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// changed section - begin
+  (arudert)</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>108</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Layout endLayout <b>= null;</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>109</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>try {</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>110</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>reader <b>= </b>getReader<b>(</b>lfFileName
+  <b>+ </b>&quot;.end.layout&quot;<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>111</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>layoutHelper <b>= new </b>LayoutHelper<b>(</b>reader<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>112</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>endLayout <b>= </b>layoutHelper</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>113</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>.</span></b><span
+  style='font-size:10.0pt'>getLayoutFromText<b>(</b>Globals<b>.</b>FORMATTER_PACKAGE<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>114</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>} catch (</span></b><span
+  style='font-size:10.0pt'>IOException ex<b>) {</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>115</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// If an exception was
+  thrown, export filter doesn't have an end</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>116</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// file.</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>117</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>}</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>118</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>119</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// Write footer</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>120</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>if (</span></b><span
+  style='font-size:10.0pt'>endLayout <b>!= null) {</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>121</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>ps<b>.</b>write<b>(</b>endLayout<b>.</b>doLayout<b>(</b>database<b>,
+  </b>encoding<b>));</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>122</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>missingFormatters<b>.</b>addAll<b>(</b>endLayout<b>.</b>getMissingFormatters<b>());</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>123</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>}</span></b></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>124</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>125</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>// Clear custom name
+  formatters:</span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:17.15pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:17.15pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>126</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:17.15pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>Globals<b>.</b>prefs<b>.</b>customExportNameFormatters
+  <b>= null;</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:17.15pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:17.15pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:17.15pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>128</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:17.15pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>if (!</span></b><span
+  style='font-size:10.0pt'>missingFormatters<b>.</b>isEmpty<b>()) {</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:17.15pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:34.3pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:34.3pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>129</span></p>
+  <p class=MsoNormal><b><span style='font-size:10.0pt'>&nbsp;</span></b></p>
+  <p class=MsoNormal><span style='font-size:10.0pt'>130</span></p>
+  </td>
+  <td width=608 valign=top style='width:456.3pt;padding:0in 0in 0in 0in;
+  height:34.3pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>StringBuilder sb <b>= new </b>StringBuilder<b>(</b>&quot;The
+  following formatters could found&quot;<b>).</b></span></p>
+  <p class=MsoNormal><span style='font-size:10.0pt'>append<b>(</b>&quot;:
+  &quot;<b>);</b></span></p>
+  </td>
+  <td width=55 valign=top style='width:41.55pt;padding:0in 0in 0in 0in;
+  height:34.3pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'>not be</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:8.6pt;margin-right:0in;margin-bottom:0in;
+margin-left:7.85pt;margin-bottom:.0001pt'><span style='font-size:10.0pt;
+color:white'>131</span><span style='font-size:10.0pt'>           for (Iterator&lt;String&gt;
+i = missingFormatters.iterator(); i.hasNext();)<span style='letter-spacing:
+-1.6pt'> </span>{</span></p>
+
+</div>
+
+<span style='font-size:10.0pt;font-family:"Courier New"'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<div class=WordSection2>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='margin-left:5.7pt;border-collapse:collapse'>
+ <tr style='height:11.4pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=TableParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+  0in;margin-left:2.5pt;margin-bottom:.0001pt'><span style='font-size:10.0pt'>132</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=TableParagraph align=right style='margin-top:0in;margin-right:2.3pt;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt;text-align:right'><span
+  style='font-size:10.0pt'>sb.append(i.next());</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:2.5pt'><span style='font-size:
+  10.0pt'>133</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:33.05pt'><span style='font-size:
+  10.0pt'>if (i.hasNext()) {</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:2.5pt'><span style='font-size:
+  10.0pt'>134</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph align=right style='margin-right:2.3pt;text-align:
+  right'><span style='font-size:10.0pt'>sb.append(&quot;, &quot;);</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:2.5pt'><span style='font-size:
+  10.0pt'>135</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:33.05pt'><span style='font-size:
+  10.0pt'>}</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:2.5pt'><span style='font-size:
+  10.0pt'>136</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:9.0pt'><span style='font-size:
+  10.0pt'>}</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:2.5pt'><span style='font-size:
+  10.0pt'>137</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:9.0pt'><span style='font-size:
+  10.0pt'>LOGGER.warn(sb);</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.45pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:2.5pt'><span style='font-size:
+  10.0pt'>138</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-left:21.0pt'><span style='font-size:
+  10.0pt'>}</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.45pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:11.4pt'>
+  <td width=55 valign=top style='width:41.5pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=TableParagraph style='margin-left:2.5pt;line-height:10.35pt'><span
+  style='font-size:10.0pt'>139</span></p>
+  </td>
+  <td width=48 valign=top style='width:35.95pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+  <td width=207 valign=top style='width:155.5pt;padding:0in 0in 0in 0in;
+  height:11.4pt'>
+  <p class=TableParagraph style='margin-top:0in;line-height:normal'><span
+  style='font-size:8.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyText style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:7.85pt;margin-bottom:.0001pt'><span style='color:white'>140</span>       finalizeSaveSession(ss);</p>
+
+<p class=MsoBodyText style='margin-top:.1pt;margin-right:0in;margin-bottom:
+0in;margin-left:7.85pt;margin-bottom:.0001pt'>141   }</p>
+
+</div>
+
+</body>
+
+</html>
