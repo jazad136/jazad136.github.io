@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Experiment Question 2 (Part 3 of 6)</title>
+    <style>
+      body {font-family: "Arial","Helvetica",sans-serif;}
+      #documentation {display: block;
+        margin-left: 30px;
+        width: 500px;
+        border: thin solid gray;
+        padding-left: 30px;
+        background-color:#ffff77}
+    </style>
+  </head>
+  <body>
+    <form action="index.html"><fieldset>
+      <h3>Comprehension Question</h3>
+      <h4>Please, browse the code below.</h4>
+    <iframe id="code" src="subfiles2/Formatted_PerformExport.html" width="900" height="300"></iframe>
+    <!--<iframe src="images/bug1_choice1.png"></iframe>-->
+    <h4 id="study-question-text">The problem is that the file stream is not being closed properly, preventing saving.</h4>
+      <div id="documentation">
+	<h4>From JabRef documentation</h4>
+	<p>Export file: -o filename[,format]</p>
+<p>This option causes JabRef to save or export a file imported or loaded by the same command line. If a file is imported using the -i option, that database will be exported. Otherwise, the last file specified (and successfully loaded) without the -i option will be exported.</p>
+
+<p>If only a filename is specified, it will be saved in BibTeX format. If the filename is followed by a comma and an export format, the given export filter will be used. A custom export filter can be used in this way, and will be preferred if the export name matches both a custom and a standard export filter.</p>
+
+<p>Use the -h option to get a list of availiable export formats.</p>
+
+<p>The -o option can be specified only once, and for one file only. </p>
+	
+      </div>
+       <h4>Please choose the code segment that when modified will fix the bug.</h4>
+      <p><input type="radio" name="Q2" id="Choice1" value="1" checked="checked"/>
+      <label for="Choice1">Choice 1</label><br/>
+      <img src="images2/bug2_choice1.png"/></p>
+      
+      <p ><input type="radio" name="Q2" id="Choice2" value="2"/>
+      <label for="Choice2">Choice 2</label><br/>
+      <img src="images2/bug2_choice2.png"/></p>
+
+      <p><input type="radio" name="Q2" id="Choice3" value="3" />
+      <label for="Choice3">Choice 3</label><br/>
+      <img src="images2/bug2_choice3.png"/></p>
+
+      <p><input type="radio" name="Q2" id="Choice4" value="4" />
+      <label for="Choice4">Choice 4</label><br/>
+      <img src="images2/bug2_choice4.png"/></p>
+
+      <input type="submit" value="Submit"/>
+    </fieldset></form>
+  </body>
+</html>

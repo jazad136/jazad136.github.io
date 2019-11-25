@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Experiment Question A (Question 2 of 6)</title>
+    <style>
+      body {font-family: "Arial","Helvetica",sans-serif;}
+      #documentation {display: block;
+        margin-left: 30px;
+        width: 500px;
+        border: thin solid gray;
+        padding-left: 30px;
+        background-color:#ffff77}
+    </style>
+  </head>
+  <body>
+      
+    <form action="index.html"><fieldset>
+      <h3>Bug Fixing Question</h3>
+      <h4>Please browse the code below</h4>
+      <iframe src="subfiles1/Formatted_ProcessArguments.html" width="900" height="300"></iframe>
+      <h4>A bug exists such that when the --aux argument is specified,
+      the data that is imported is not written to the file system.</h4>
+      <p>The following code snippet has been identified to cause the bug</p>
+      <p><img src="images1/bug1_choice1.png"/></p>
+      <h4> Which of these four options is the most likely fix to this bug:</h4>
+      <p><input type="radio" name="Qa" id="Choice1" value="1" checked="checked"/>
+      <label for="Choice1">Choice 1</label><br/>
+      session.commit(new File(subName));</p>
+      
+      <p><input type="radio" name="Qa" id="Choice2" value="2"/>
+      <label for="Choice2">Choice 2</label><br/>
+      session.commit(newBase);</p>
+
+      <p><input type="radio" name="Qa" id="Choice3" value="3" />
+      <label for="Choice3">Choice 3</label><br/>
+      session.commit(session);</p>
+
+      <p><input type="radio" name="Qa	" id="Choice4" value="4" />
+      <label for="Choice4">Choice 4</label><br/>
+      session.getWriter().couldEncodeAll();</p>
+      
+      <input type="submit" value="Submit"/>
+    </fieldset></form>
+  </body>
+</html>

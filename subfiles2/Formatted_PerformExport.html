@@ -1,0 +1,159 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>ExportFormat.java</title></head>
+<body>
+<comment type="block" format="javadoc">1&nbsp;&nbsp;/**</line><br/>
+<line>2  &nbsp;&nbsp;&nbsp; * Perform the export of {@code database}.</line><br/>
+<line>3  &nbsp;&nbsp;&nbsp; *</line><br/>
+<line>4  &nbsp;&nbsp;&nbsp; * @param database</line><br/>
+<line>5  &nbsp;&nbsp;&nbsp; *            The database to export from.</line><br/>
+<line>6  &nbsp;&nbsp;&nbsp; * @param metaData</line><br/>
+<line>7  &nbsp;&nbsp;&nbsp; *            The database's meta data.</line><br/>
+<line>8  &nbsp;&nbsp;&nbsp; * @param file</line><br/>
+<line>9  &nbsp;&nbsp;&nbsp; *            the file to write the resulting export to</line><br/>
+<line>10 &nbsp; * @param encoding</line><br/>
+<line>11 &nbsp; *            The encoding of the database</line><br/>
+<line>12 &nbsp; * @param entryIds</line><br/>
+<line>13 &nbsp; *            Contains the IDs of all entries that should be exported. If</line><br/>
+<line>14 &nbsp; *            &lt;code&gt;null&lt;/code&gt;, all entries will be exported.</line><br/>
+<line>15 &nbsp; *</line><br/>
+<line>16 &nbsp; * @throws IOException</line><br/>
+<line>17 &nbsp; *             if a problem occurred while trying to write to {@code writer}</line><br/>
+<line>18 &nbsp; *             or read from required resources.</line><br/>
+<line>19 &nbsp; * @throws Exception</line><br/>
+<line>20 &nbsp; *             if any other error occurred during export.</line><br/>
+<line>21 &nbsp; *</line><br/>
+<line>22 &nbsp; * @see net.sf.jabref.exporter.IExportFormat#performExport(BibDatabase,</line><br/>
+<line>23 &nbsp; *      net.sf.jabref.MetaData, java.lang.String, java.lang.String, java.util.Set)</line><br/>
+<line>24 &nbsp; */</comment></line><br/>
+<line>25 &nbsp;<function><annotation>@<name>Override</name></annotation></line><br/>
+<line>26 &nbsp;<specifier>public</specifier> <type><name>void</name></type> <name>performExport</name><parameter_list>(<parameter><decl><type><specifier>final</specifier> <name>BibDatabase</name></type> <name>database</name></decl></parameter>,</line><br/>
+<line>27 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<parameter><decl><type><specifier>final</specifier> <name>MetaData</name></type> <name>metaData</name></decl></parameter>, <parameter><decl><type><specifier>final</specifier> <name>String</name></type> <name>file</name></decl></parameter>,</line><br/>
+<line>28 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<parameter><decl><type><specifier>final</specifier> <name>Charset</name></type> <name>enc</name></decl></parameter>, <parameter><decl><type><name><name>Set</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>entryIds</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{</line><br/>
+<line>29 &nbsp;</line><br/>
+<line>30 &nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>File</name></type> <name>outFile</name> <init>= <expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><name>file</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt></line><br/>
+<line>31 &nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>SaveSession</name></type> <name>ss</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt></line><br/>
+<line>32 &nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><name><name>this</name><operator>.</operator><name>encoding</name></name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><then> <block>{</line><br/>
+<line>33 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<try>try <block>{</line><br/>
+<line>34 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>ss</name> <operator>=</operator> <call><name>getSaveSession</name><argument_list>(<argument><expr><name><name>this</name><operator>.</operator><name>encoding</name></name></expr></argument>, <argument><expr><name>outFile</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>35 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{</line><br/>
+<line>36 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Perhaps the overriding encoding doesn't work?</comment></line><br/>
+<line>37 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// We will fall back on the default encoding.</comment></line><br/>
+<line>38 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><literal type="string">"Can not get save session."</literal></expr></argument>, <argument><expr><name>ex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>39 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></catch></try></line><br/>
+<line>40 &nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>41 &nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><name>ss</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition><then> <block>{</line><br/>
+<line>42 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>ss</name> <operator>=</operator> <call><name>getSaveSession</name><argument_list>(<argument><expr><name>enc</name></expr></argument>, <argument><expr><name>outFile</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>43 &nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>44 &nbsp;</line><br/>
+<line>45 &nbsp;&nbsp;&nbsp;&nbsp;<try>try <init>(<decl><type><name>VerifyingWriter</name></type> <name>ps</name> <init>= <expr><call><name><name>ss</name><operator>.</operator><name>getWriter</name></name><argument_list>()</argument_list></call></expr></init></decl>)</init> <block>{</line><br/>
+<line>46 &nbsp;</line><br/>
+<line>47 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>Layout</name></type> <name>beginLayout</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt></line><br/>
+<line>48 &nbsp;</line><br/>
+<line>49 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Check if this export filter has bundled name formatters:</comment></line><br/>
+<line>50 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Set a global field, so all layouts have access to the custom name formatters:</comment></line><br/>
+<line>51 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name><name>Globals</name><operator>.</operator><name>prefs</name><operator>.</operator><name>customExportNameFormatters</name></name> <operator>=</operator> <call><name>readFormatterFile</name><argument_list>(<argument><expr><name>lfFileName</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>52 &nbsp;</line><br/>
+<line>53 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name><name>ArrayList</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>missingFormatters</name> <init>= <expr><operator>new</operator> <call><name><name>ArrayList</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt></line><br/>
+<line>54 &nbsp;</line><br/>
+<line>55 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Print header</comment></line><br/>
+<line>56 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<try>try <init>(<decl><type><name>Reader</name></type> <name>reader</name> <init>= <expr><call><name>getReader</name><argument_list>(<argument><expr><name>lfFileName</name> <operator>+</operator> <literal type="string">".begin.layout"</literal></expr></argument>)</argument_list></call></expr></init></decl>)</init> <block>{</line><br/>
+<line>57 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>LayoutHelper</name></type> <name>layoutHelper</name> <init>= <expr><operator>new</operator> <call><name>LayoutHelper</name><argument_list>(<argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt></line><br/>
+<line>58 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>beginLayout</name> <operator>=</operator> <call><name><name>layoutHelper</name><operator>.</operator><name>getLayoutFromText</name></name><argument_list>(<argument><expr><name><name>Globals</name><operator>.</operator><name>FORMATTER_PACKAGE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>59 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></try> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{</line><br/>
+<line>60 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// If an exception was cast, export filter doesn't have a begin</comment></line><br/>
+<line>61 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// file.</comment></line><br/>
+<line>62 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></catch></line><br/>
+<line>63 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Write the header</comment></line><br/>
+<line>64 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><name>beginLayout</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><then> <block>{</line><br/>
+<line>65 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>ps</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><call><name><name>beginLayout</name><operator>.</operator><name>doLayout</name></name><argument_list>(<argument><expr><name>database</name></expr></argument>, <argument><expr><name>enc</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>66 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>missingFormatters</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>beginLayout</name><operator>.</operator><name>getMissingFormatters</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>67 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>68 &nbsp;</line><br/>
+<line>69 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="block">/*</line><br/>
+<line>70 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Write database entries; entries will be sorted as they appear on the</line><br/>
+<line>71 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * screen, or sorted by author, depending on Preferences. We also supply</line><br/>
+<line>72 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * the Set entries - if we are to export only certain entries, it will</line><br/>
+<line>73 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * be non-null, and be used to choose entries. Otherwise, it will be</line><br/>
+<line>74 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * null, and be ignored.</line><br/>
+<line>75 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */</comment></line><br/>
+<line>76 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>BibEntry</name></argument>&gt;</argument_list></name></type> <name>sorted</name> <init>= <expr><call><name><name>FileActions</name><operator>.</operator><name>getSortedEntries</name></name><argument_list>(<argument><expr><name>database</name></expr></argument>, <argument><expr><name>metaData</name></expr></argument>, <argument><expr><name>entryIds</name></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt></line><br/>
+<line>77 &nbsp;</line><br/>
+<line>78 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Load default layout</comment></line><br/>
+<line>79 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>Layout</name></type> <name>defLayout</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt></line><br/>
+<line>80 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>LayoutHelper</name></type> <name>layoutHelper</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt></line><br/>
+<line>81 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<try>try <init>(<decl><type><name>Reader</name></type> <name>reader</name> <init>= <expr><call><name>getReader</name><argument_list>(<argument><expr><name>lfFileName</name> <operator>+</operator> <literal type="string">".layout"</literal></expr></argument>)</argument_list></call></expr></init></decl>)</init> <block>{</line><br/>
+<line>82 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>layoutHelper</name> <operator>=</operator> <operator>new</operator> <call><name>LayoutHelper</name><argument_list>(<argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>83 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>defLayout</name> <operator>=</operator> <call><name><name>layoutHelper</name><operator>.</operator><name>getLayoutFromText</name></name><argument_list>(<argument><expr><name><name>Globals</name><operator>.</operator><name>FORMATTER_PACKAGE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>84 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></try></line><br/>
+<line>85 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><name>defLayout</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><then> <block>{</line><br/>
+<line>86 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>missingFormatters</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>defLayout</name><operator>.</operator><name>getMissingFormatters</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>87 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><call><name><name>defLayout</name><operator>.</operator><name>getMissingFormatters</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>88 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>89 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name><name>HashMap</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Layout</name></argument>&gt;</argument_list></name></type> <name>layouts</name> <init>= <expr><operator>new</operator> <call><name><name>HashMap</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt></line><br/>
+<line>90 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>Layout</name></type> <name>layout</name></decl>;</decl_stmt></line><br/>
+<line>91 &nbsp;</line><br/>
+<line>92 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name><name>ExportFormats</name><operator>.</operator><name>entryNumber</name></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt></line><br/>
+<line>93 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<for>for <control>(<init><decl><type><name>BibEntry</name></type> <name>entry</name> <range>: <expr><name>sorted</name></expr></range></decl></init>)</control> <block>{</line><br/>
+<line>94 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name><name>ExportFormats</name><operator>.</operator><name>entryNumber</name></name><operator>++</operator></expr>;</expr_stmt> <comment type="line">// Increment entry counter.</comment></line><br/>
+<line>95 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Get the layout</comment></line><br/>
+<line>96 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>String</name></type> <name>type</name> <init>= <expr><call><name><name>entry</name><operator>.</operator><name>getType</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>getName</name><argument_list>()</argument_list></call><operator>.</operator><call><name>toLowerCase</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt></line><br/>
+<line>97 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><call><name><name>layouts</name><operator>.</operator><name>containsKey</name></name><argument_list>(<argument><expr><name>type</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{</line><br/>
+<line>98 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>layout</name> <operator>=</operator> <call><name><name>layouts</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>type</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>99 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></then> <else>else <block>{</line><br/>
+<line>100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<try>try <init>(<decl><type><name>Reader</name></type> <name>reader</name> <init>= <expr><call><name>getReader</name><argument_list>(<argument><expr><name>lfFileName</name> <operator>+</operator> <literal type="char">'.'</literal> <operator>+</operator> <name>type</name> <operator>+</operator> <literal type="string">".layout"</literal></expr></argument>)</argument_list></call></expr></init></decl>)</init> <block>{</line><br/>
+<line>101&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// We try to get a type-specific layout for this entry.</comment></line><br/>
+<line>102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>layoutHelper</name> <operator>=</operator> <operator>new</operator> <call><name>LayoutHelper</name><argument_list>(<argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>103&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>layout</name> <operator>=</operator> <call><name><name>layoutHelper</name><operator>.</operator><name>getLayoutFromText</name></name><argument_list>(<argument><expr><name><name>Globals</name><operator>.</operator><name>FORMATTER_PACKAGE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>layouts</name><operator>.</operator><name>put</name></name><argument_list>(<argument><expr><name>type</name></expr></argument>, <argument><expr><name>layout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>105&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><name>layout</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><then> <block>{</line><br/>
+<line>106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>missingFormatters</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>layout</name><operator>.</operator><name>getMissingFormatters</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>107&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>108&nbsp;</line><br/>
+<line>109&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></try> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{</line><br/>
+<line>110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// The exception indicates that no type-specific layout</comment></line><br/>
+<line>111&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// exists, so we</comment></line><br/>
+<line>112&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// go with the default one.</comment></line><br/>
+<line>113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>layout</name> <operator>=</operator> <name>defLayout</name></expr>;</expr_stmt></line><br/>
+<line>114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></catch></line><br/>
+<line>115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></else></if></line><br/>
+<line>116&nbsp;</line><br/>
+<line>117&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Write the entry</comment></line><br/>
+<line>118&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>ps</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><call><name><name>layout</name><operator>.</operator><name>doLayout</name></name><argument_list>(<argument><expr><name>entry</name></expr></argument>, <argument><expr><name>database</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>119&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></for></line><br/>
+<line>120&nbsp;</line><br/>
+<line>121&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Print footer</comment></line><br/>
+<line>122&nbsp;</line><br/>
+<line>123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// changed section - begin (arudert)</comment></line><br/>
+<line>124&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>Layout</name></type> <name>endLayout</name> <init>= <expr><literal type="null">null</literal></expr></init></decl>;</decl_stmt></line><br/>
+<line>125&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<try>try <init>(<decl><type><name>Reader</name></type> <name>reader</name> <init>= <expr><call><name>getReader</name><argument_list>(<argument><expr><name>lfFileName</name> <operator>+</operator> <literal type="string">".end.layout"</literal></expr></argument>)</argument_list></call></expr></init></decl>)</init> <block>{</line><br/>
+<line>126&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>layoutHelper</name> <operator>=</operator> <operator>new</operator> <call><name>LayoutHelper</name><argument_list>(<argument><expr><name>reader</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name>endLayout</name> <operator>=</operator> <call><name><name>layoutHelper</name><operator>.</operator><name>getLayoutFromText</name></name><argument_list>(<argument><expr><name><name>Globals</name><operator>.</operator><name>FORMATTER_PACKAGE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></try> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{</line><br/>
+<line>129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// If an exception was thrown, export filter doesn't have an end</comment></line><br/>
+<line>130&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// file.</comment></line><br/>
+<line>131&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></catch></line><br/>
+<line>132&nbsp;</line><br/>
+<line>133&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Write footer</comment></line><br/>
+<line>134&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><name>endLayout</name> <operator>!=</operator> <literal type="null">null</literal></expr>)</condition><then> <block>{</line><br/>
+<line>135&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>ps</name><operator>.</operator><name>write</name></name><argument_list>(<argument><expr><call><name><name>endLayout</name><operator>.</operator><name>doLayout</name></name><argument_list>(<argument><expr><name>database</name></expr></argument>, <argument><expr><name>encoding</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>136&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>missingFormatters</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><call><name><name>endLayout</name><operator>.</operator><name>getMissingFormatters</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>137&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>138&nbsp;</line><br/>
+<line>139&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment type="line">// Clear custom name formatters:</comment></line><br/>
+<line>140&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><name><name>Globals</name><operator>.</operator><name>prefs</name><operator>.</operator><name>customExportNameFormatters</name></name> <operator>=</operator> <literal type="null">null</literal></expr>;</expr_stmt></line><br/>
+<line>141&nbsp;</line><br/>
+<line>142&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><operator>!</operator><call><name><name>missingFormatters</name><operator>.</operator><name>isEmpty</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{</line><br/>
+<line>143&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<decl_stmt><decl><type><name>StringBuilder</name></type> <name>sb</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>(<argument><expr><literal type="string">"The following formatters could not be found"</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>append</name><argument_list>(<argument><expr><literal type="string">": "</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt></line><br/>
+<line>144&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<for>for <control>(<init><decl><type><name><name>Iterator</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>i</name> <init>= <expr><call><name><name>missingFormatters</name><operator>.</operator><name>iterator</name></name><argument_list>()</argument_list></call></expr></init></decl>;</init> <condition><expr><call><name><name>i</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>;</condition><incr/>)</control> <block>{</line><br/>
+<line>145&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>sb</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name><name>i</name><operator>.</operator><name>next</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>146&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<if>if <condition>(<expr><call><name><name>i</name><operator>.</operator><name>hasNext</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{</line><br/>
+<line>147&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>sb</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">", "</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>148&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>149&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></for></line><br/>
+<line>150&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name><name>LOGGER</name><operator>.</operator><name>warn</name></name><argument_list>(<argument><expr><name>sb</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>151&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</block></then></if></line><br/>
+<line>152&nbsp;&nbsp;&nbsp;&nbsp;}</block></try></line><br/>
+<line>153&nbsp;&nbsp;&nbsp;&nbsp;<expr_stmt><expr><call><name>finalizeSaveSession</name><argument_list>(<argument><expr><name>ss</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></line><br/>
+<line>154&nbsp;</line><br/>
+<line>155&nbsp;}</block></function></line><br/></body>
+</html>
