@@ -13,14 +13,14 @@
   </head>
   <body>
     <form action="index.html"><fieldset>
-      <h3>Bug Fixing Question</h3>
-      <h4>Please browse the code below</h4>
-      <iframe src="subfiles2/Formatted_PerformExport.html" width="900" height="300"></iframe>
-      <h4 id="study-question-text">A bug exists such that an output file is prevented from being created.</h4>
-      <p>The following code snippet has been identified to cause the bug</p>
-      <p><img src="images2/bug2_choice1.png"/></p>
-      <h4> Which of these four options is the most likely fix to this bug:</h4>
-      <p><input type="radio" name="Qb" id="Choice1" value="1" checked="checked"/>
+      <h3 class = "title">Bug Fixing Question</h3>
+      <h4 class = "isntructions">Please browse the code below</h4>
+      <iframe class = "code" src="subfiles2/Formatted_PerformExport.html" width="900" height="300"></iframe>
+      <h4 class = "bug-descripion">A bug exists such that an output file is prevented from being created.</h4>
+      <p class = "bug-descripion">The following code snippet has been identified to cause the bug</p>
+      <p class = "bug-descripion"><img src="images2/bug2_choice1.png"/></p>
+      <h4 class = "instructions"> Which of these four options is the most likely fix to this bug:</h4>
+      <p class = "choice"><input type="radio" name="Qb" id="Choice1" value="1" checked="checked"/>
       <label for="Choice1">Choice 1</label><br/>
 	  <!-- print the number 5 -->
 	  <div class="choice-text">
@@ -34,7 +34,7 @@
 	  </div>
 	  </p>
       
-      <p><input type="radio" name="Qb" id="Choice2" value="2"/>
+      <p class = "choice"><input type="radio" name="Qb" id="Choice2" value="2"/>
       <label for="Choice2">Choice 2</label><br/>
       <!-- don't append anything -->
 	  <div class="choice-text">
@@ -47,7 +47,7 @@
 	  </div>
 	  </p>
 
-      <p><input type="radio" name="Qb" id="Choice3" value="3" />
+      <p class = "choice"><input type="radio" name="Qb" id="Choice3" value="3" />
       <label for="Choice3">Choice 3</label><br/>
       <!-- move save session inside the brackets -->
 	  <div class="choice-text">
@@ -61,7 +61,7 @@
 	  </div>
 	  </p>
 
-      <p><input type="radio" name="Qb" id="Choice4" value="4" />
+      <p class = "choice"><input type="radio" name="Qb" id="Choice4" value="4" />
       <label for="Choice4">Choice 4</label><br/>
       <!-- remove the call to finalizeSaveSession -->
 	  <div class="choice-text">
